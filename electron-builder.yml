@@ -1,0 +1,51 @@
+appId: 'sphinixlauncher'
+productName: 'SphinixLauncher'
+artifactName: '${productName}-setup-${version}.${ext}'
+
+copyright: 'Copyright © 2018-2022 Daniel Scalzi, Copyright © 2022 SDT'
+
+asar: true
+compression: 'maximum'
+
+files:
+  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json}'
+
+extraResources:
+  - 'libraries'
+
+# Windows Configuration
+win: 
+  target: 
+    - target: 'nsis'
+      arch: 'x64'
+
+# Windows Installer Configuration
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+
+# macOS Configuration
+mac:
+  target:
+    - target: 'dmg'
+      arch:
+        - 'x64'
+        - 'arm64'
+  artifactName: '${productName}-setup-${version}-${arch}.${ext}'
+  category: 'public.app-category.games'
+
+# Linux Configuration
+linux: 
+  target: 'AppImage'
+  maintainer: 'Daniel Scalzi'
+  vendor: 'SDT'
+  synopsis: 'Modded Minecraft Launcher for Sphinix and Partners'
+  description: 'Пользовательский лаунчер, который позволяет пользователям присоединяться к модифицированным серверам. Все моды, конфигурации и обновления обрабатываются автоматически.'
+  category: 'Game'
+
+
+directories:
+  buildResources: 'build'
+  output: 'dist'
